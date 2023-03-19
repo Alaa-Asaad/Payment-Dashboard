@@ -59,6 +59,11 @@ module.exports = {
     ],
     'react/jsx-props-no-spreading': 0,
     'react/react-in-jsx-scope': 0,
+    'import/no-extraneous-dependencies': [
+      'error', {
+        devDependencies: true,
+      },
+    ],
     'react/function-component-definition': [
       2,
       {
@@ -66,5 +71,6 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
+    'react/jsx-indent': 'off',
   },
 };

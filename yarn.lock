@@ -262,6 +262,13 @@
     "@mantine/utils" "6.0.2"
     react-dropzone "14.2.3"
 
+"@mantine/ds@^6.0.2":
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/@mantine/ds/-/ds-6.0.2.tgz#4aa225a5e36c8398f633d36a23f866c03d2091ff"
+  integrity sha512-T4dypmfG1tlVUEJv8m31ToxbIF9HLvoOdB6pd4bgyYBP1AbgZqTviDO8J4Pod/+J9PyAA75qqLVYcc6Z46jwkg==
+  dependencies:
+    "@mantine/utils" "6.0.2"
+
 "@mantine/form@^6.0.2":
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/@mantine/form/-/form-6.0.2.tgz#560b0e2b9e5775ec564e87c2c4d8bcf46e43f805"
