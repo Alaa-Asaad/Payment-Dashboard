@@ -1,0 +1,11 @@
+[
+  {
+    "title": "Stripe",
+    "link": "/stripe"
+  },
+  {
+    "title": "Paypal",
+    "link": "paypal"
+  },
+  { "title": "Go pay", "link": "go-pay" }
+]
