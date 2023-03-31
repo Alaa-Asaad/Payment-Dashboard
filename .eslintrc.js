@@ -31,7 +31,9 @@ module.exports = {
     '@typescript-eslint/no-shadow': ['error'],
     'react/jsx-filename-extension': [
       'warn',
-      { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
+      {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
     ],
     'import/extensions': [
       'error',
@@ -47,7 +49,9 @@ module.exports = {
       'warn',
       {
         'newlines-between': 'always',
-        alphabetize: { order: 'asc' },
+        alphabetize: {
+          order: 'asc',
+        },
         groups: [
           'builtin',
           'external',
@@ -72,5 +76,7 @@ module.exports = {
       },
     ],
     'react/jsx-indent': 'off',
+    'object-curly-newline': 'off',
+
   },
 };

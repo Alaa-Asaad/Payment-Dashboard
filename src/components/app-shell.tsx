@@ -1,9 +1,23 @@
-import { AppShell } from '@mantine/core';
+import { AppShell, useMantineTheme } from '@mantine/core';
+import { useMediaQuery, useToggle } from '@mantine/hooks';
+import { ReactNode } from 'react';
 
 import HeaderBar from './header/header';
 import NavbarLeft from './nav-bar/navbar';
 
-export default function Layout() {
+interface Props {
+  hideNav?: boolean;
+  children: ReactNode;
+  gm: string[];
+}
+
+export default function Layout({ hideNav, children, gm }: Props) {
+  const theme = useMantineTheme();
+  const isDesktopScreen = useMediaQuery('(min-width: 56.25em)', true, {
+    getInitialValueInEffect: false,
+  });
+  const [opened, setOpened] = useToggle([false, true]);
+
   const links = [
     {
       link: '/about',
@@ -22,12 +36,21 @@ export default function Layout() {
       label: 'Community',
     },
   ];
+  console.log(isDesktopScreen);
   return (
     <AppShell
       padding="md"
-      navbar={<NavbarLeft />}
-      header={<HeaderBar links={links} />}
-      styles={(theme) => ({
+      navbarOffsetBreakpoint="sm"
+      asideOffsetBreakpoint="sm"
+      fixed
+      navbar={
+        hideNav && isDesktopScreen ? (
+          <span />
+        ) : (
+          <NavbarLeft opened={opened || isDesktopScreen} gm={gm} />
+        )
+      }
+      styles={() => ({
         main: {
           backgroundColor:
             theme.colorScheme === 'dark'
@@ -36,7 +59,11 @@ export default function Layout() {
         },
       })}
     >
-      Your application here
+      {children}
     </AppShell>
   );
 }
+
+Layout.defaultProps = {
+  hideNav: false,
+};
