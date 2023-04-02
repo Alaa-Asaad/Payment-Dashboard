@@ -5,6 +5,7 @@ interface singleLink {
 
 interface SideLinkType {
   sideLinks: singleLink[];
+  activeLinkChoose: string;
 }
 
 export default SideLinkType;

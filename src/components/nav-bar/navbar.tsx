@@ -8,13 +8,16 @@ import SideLinkType from '@/types/side-links-type';
 
 import useStyles from './styles/navbar-style';
 
-export default function NavbarLeft({ sideLinks }: SideLinkType) {
+export default function NavbarLeft({
+  sideLinks,
+  activeLinkChoose,
+}: SideLinkType) {
   const isDesktopScreen = useMediaQuery('(min-width: 720px)');
 
   const { classes, cx } = useStyles();
   const [active] = useState('Payments Methods');
-  const [activeLink, setActiveLink] = useState('Security');
   const router = useRouter();
+  const [activeLink, setActiveLink] = useState(activeLinkChoose);
 
   const links = sideLinks.map((item) => (
     <Link
