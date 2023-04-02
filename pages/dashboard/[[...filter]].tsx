@@ -1,17 +1,34 @@
 import { Container, Grid } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import data from '@/public/data/sidebar-links.json';
 import NavbarLeft from '@/src/components/nav-bar/navbar';
+import GoPay from '@/src/payment-methods/go-pay';
+import PayPal from '@/src/payment-methods/paypal';
+import Stripe from '@/src/payment-methods/stripe';
 
-export default function DashBoard() {
+export default function DashBoard({ paramString }: any) {
   const isDesktopScreen = useMediaQuery('(min-width: 45em)');
   const [raw] = useState(data);
-  const router = useRouter();
-  const { filter } = router.query;
+  // const router = useRouter();
+  // const queryParam: any = router.query.filter ?? '';
+
+  const showActivePaymentMethod = useCallback((filterString?: string) => {
+    switch (filterString) {
+      case 'stripe':
+        return <Stripe />;
+      case 'paypal':
+        return <PayPal />;
+      case 'go-pay':
+        return <GoPay />;
+
+      default:
+        return null;
+    }
+  }, []);
+  // console.log(queryParam);
 
   return (
     <>
@@ -24,7 +41,7 @@ export default function DashBoard() {
       <Container size="xxl">
         <Grid>
           <Grid.Col span={2}>
-            <NavbarLeft sideLinks={raw} />
+            <NavbarLeft sideLinks={raw} activeLinkChoose={paramString} />
           </Grid.Col>
           <Grid.Col
             span={isDesktopScreen ? 10 : 12}
@@ -35,10 +52,18 @@ export default function DashBoard() {
               textAlign: 'center',
             }}
           >
-            {filter}
+            {showActivePaymentMethod(paramString)}
           </Grid.Col>
         </Grid>
       </Container>
     </>
   );
+}
+
+export async function getServerSideProps(context: any) {
+  return {
+    props: {
+      paramString: context.params.filter[0],
+    },
+  };
 }

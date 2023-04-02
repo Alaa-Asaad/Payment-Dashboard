@@ -19,6 +19,7 @@ function DrawerComp({ opened, setOpen }: Props) {
       href={`/dashboard/${item.link}`}
       className={classes.link}
       onClick={setOpen}
+      key={item.link}
     >
       {item.title}
     </Link>
