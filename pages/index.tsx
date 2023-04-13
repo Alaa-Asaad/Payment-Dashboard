@@ -9,10 +9,11 @@ export default function Home() {
         <title>Create DashBoard</title>
         <meta name="description" content="DashBoard" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+
         {/* <link rel="icon" href="/favicon.ico" /> */}
       </Head>
 
-      <DashBoard />
+      <DashBoard paramString="" />
     </>
   );
 }
