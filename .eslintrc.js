@@ -63,11 +63,7 @@ module.exports = {
     ],
     'react/jsx-props-no-spreading': 0,
     'react/react-in-jsx-scope': 0,
-    'import/no-extraneous-dependencies': [
-      'error', {
-        devDependencies: true,
-      },
-    ],
+    'import/no-extraneous-dependencies': ['error', { devDependencies: false, optionalDependencies: false, peerDependencies: false }],
     'react/function-component-definition': [
       2,
       {

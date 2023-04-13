@@ -9,11 +9,13 @@ import GoPay from '@/src/payment-methods/go-pay';
 import PayPal from '@/src/payment-methods/paypal';
 import Stripe from '@/src/payment-methods/stripe';
 
-export default function DashBoard({ paramString }: any) {
+interface Props {
+  paramString: string;
+}
+
+export default function DashBoard({ paramString }: Props) {
   const isDesktopScreen = useMediaQuery('(min-width: 45em)');
   const [raw] = useState(data);
-  // const router = useRouter();
-  // const queryParam: any = router.query.filter ?? '';
 
   const showActivePaymentMethod = useCallback((filterString?: string) => {
     switch (filterString) {
@@ -28,7 +30,6 @@ export default function DashBoard({ paramString }: any) {
         return null;
     }
   }, []);
-  // console.log(queryParam);
 
   return (
     <>
