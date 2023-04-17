@@ -1,5 +1,7 @@
 import { Container, Grid } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 import Head from 'next/head';
 import { useCallback, useState } from 'react';
 
@@ -9,6 +11,9 @@ import GoPay from '@/src/payment-methods/go-pay';
 import PayPal from '@/src/payment-methods/paypal';
 import Stripe from '@/src/payment-methods/stripe';
 
+const stripePromise = loadStripe(
+  'pk_test_51MxpBdDN1JT9Yxt18ymDIIpzPvNLiMbzdJ6xk2uqTr6EsTIPlu2Zzd6P4kvbVucaAZbjvfQf9pXGnsrcsEqODt4F009PZjGeDZ',
+);
 interface Props {
   paramString: string;
 }
@@ -20,7 +25,11 @@ export default function DashBoard({ paramString }: Props) {
   const showActivePaymentMethod = useCallback((filterString?: string) => {
     switch (filterString) {
       case 'stripe':
-        return <Stripe />;
+        return (
+          <Elements stripe={stripePromise}>
+            <Stripe />
+          </Elements>
+        );
       case 'paypal':
         return <PayPal />;
       case 'go-pay':

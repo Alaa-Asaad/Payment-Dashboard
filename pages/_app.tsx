@@ -39,7 +39,9 @@ export default function App({ Component, pageProps }: AppProps) {
       }}
     >
       <HeaderBar links={links} />
+
       <Component {...pageProps} />
+
       <Footer />
     </MantineProvider>
   );

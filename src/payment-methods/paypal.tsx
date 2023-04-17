@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import OrderResponseType from '@/types/order-create-response';
 
 import StepperComponent from '../components/stepper';
-import getOrder from '../fetcher/orderFetcher';
+import getOrder from '../fetcher/pay-pal/orderFetcher';
 
 function PayPal() {
   const [active, setActive] = useState(0);
@@ -43,7 +43,7 @@ function PayPal() {
 
   return (
     <Stack spacing={50} mt={20}>
-      <StepperComponent active={active} />
+      <StepperComponent method="paypal" active={active} />
       <Container
         style={{
           borderLeft: '2px dotted blue',
