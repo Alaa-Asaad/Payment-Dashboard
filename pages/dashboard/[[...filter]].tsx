@@ -12,7 +12,7 @@ import PayPal from '@/src/payment-methods/paypal';
 import Stripe from '@/src/payment-methods/stripe';
 
 const stripePromise = loadStripe(
-  'pk_test_51MxpBdDN1JT9Yxt18ymDIIpzPvNLiMbzdJ6xk2uqTr6EsTIPlu2Zzd6P4kvbVucaAZbjvfQf9pXGnsrcsEqODt4F009PZjGeDZ',
+  'pk_test_51N1qioEo5NeAsVbsRINxyI9oW4UEQCVj3Y8eyivNKdOMuipZa55HHdpVvCVrfJPLJtn2JEDRkDwUCEXr3xtQIfxY00UJbLMX8X',
 );
 interface Props {
   paramString: string;

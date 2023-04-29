@@ -51,7 +51,7 @@ function PayPal() {
           borderBottom: '2px dotted blue',
         }}
       >
-        <Image alt="productImage" height={450} width={450} src="/tshirt.jpg" />
+        <Image alt="productImage" height={350} width={350} src="/tshirt.jpg" />
       </Container>
       <Text mt={-30}>Price: 10$</Text>
       <Container>{loading ? <Loader /> : currentButton()}</Container>
