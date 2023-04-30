@@ -12,7 +12,7 @@ export default async function handler(
   res: NextApiResponse<OrderResponseType | Error>,
 ) {
   const order = await CreateOrder();
-  // console.log(order);
+  console.log(order);
   if (req.method === 'GET') {
     return res.status(200).json(order);
   }
