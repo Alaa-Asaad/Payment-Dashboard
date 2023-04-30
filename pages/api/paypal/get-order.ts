@@ -1,9 +1,8 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 import OrderResponseType from '@/types/order-create-response';
 
-import CreateOrder from './createOrder';
+import CreateOrder from './create-order';
 
 type Error = {
   error: string;

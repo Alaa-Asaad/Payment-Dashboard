@@ -1,4 +1,4 @@
-import { Button, Container, Loader, Stack } from '@mantine/core';
+import { Button, Container, Loader, Stack, Text } from '@mantine/core';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import OrderResponseType from '@/types/order-create-response';
 
 import StepperComponent from '../components/stepper';
-import getOrder from '../fetcher/orderFetcher';
+import getOrder from '../fetcher/pay-pal/orderFetcher';
 
 function PayPal() {
   const [active, setActive] = useState(0);
@@ -32,7 +32,7 @@ function PayPal() {
 
       case 1:
         if (order?.links !== undefined) {
-          return <Link href={order?.links[1].href}>PayPal</Link>;
+          return <Link href={order?.links[1].href}>Approve by PayPal</Link>;
         }
         return null;
 
@@ -42,9 +42,18 @@ function PayPal() {
   };
 
   return (
-    <Stack spacing={50}>
-      <StepperComponent active={active} />
-      <Image alt="productImage" height={500} width={500} src="/dell.png" />
+    <Stack spacing={50} mt={20}>
+      <StepperComponent method="paypal" active={active} />
+      <Container
+        style={{
+          borderLeft: '2px dotted blue',
+          borderRight: '2px dotted blue',
+          borderBottom: '2px dotted blue',
+        }}
+      >
+        <Image alt="productImage" height={350} width={350} src="/tshirt.jpg" />
+      </Container>
+      <Text mt={-30}>Price: 10$</Text>
       <Container>{loading ? <Loader /> : currentButton()}</Container>
     </Stack>
   );

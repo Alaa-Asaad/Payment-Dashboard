@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import PayPalOrder from '@/types/paypal-order-type';
 
-import GetAccessToken from './getToken';
+import GetAccessToken from './get-token';
 
 export default async function CreateOrder() {
   const { accessToken } = await GetAccessToken();
