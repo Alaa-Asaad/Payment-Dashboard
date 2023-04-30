@@ -11,9 +11,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<OrderResponseType | Error>,
 ) {
-  const order = await CreateOrder();
-  console.log(order);
+  // console.log(order);
   if (req.method === 'GET') {
+    console.log('inside GET get-order');
+    const order = await CreateOrder();
     return res.status(200).json(order);
   }
   return res.status(500).json({ error: 'internal Error Server' });

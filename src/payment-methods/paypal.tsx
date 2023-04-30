@@ -12,6 +12,7 @@ function PayPal() {
   const [active, setActive] = useState(0);
   const [loading, setLoading] = useState(false);
   const [order, setOrder] = useState<OrderResponseType>();
+
   const createOrder = async () => {
     setLoading(true);
     const { data } = await getOrder();
