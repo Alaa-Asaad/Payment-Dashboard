@@ -8,7 +8,7 @@ import GetAccessToken from './get-token';
 export default async function CreateOrder() {
   const { accessToken } = await GetAccessToken();
   const url = process.env.PayPal_SandBox_CreateOrder || 'undefined';
-  // console.log(accessToken);
+  // console.log(`Bearer ${accessToken}`);
 
   const headers = {
     Authorization: `Bearer ${accessToken}`,
@@ -51,8 +51,8 @@ export default async function CreateOrder() {
     const response = await axios({
       method: 'post',
       url,
-      headers,
       data,
+      headers,
     });
     const res: PayPalOrder = await response.data;
 
@@ -60,6 +60,7 @@ export default async function CreateOrder() {
   } catch (error) {
     return {
       message: 'we are in order',
+      tkk: accessToken,
       error,
     };
   }
