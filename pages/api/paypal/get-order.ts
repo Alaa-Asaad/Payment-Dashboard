@@ -18,8 +18,8 @@ export default async function handler(
       const order = await CreateOrder();
       return res.status(200).json(order);
     } catch (error) {
-      return res.status(400).json({ error });
+      return res.status(400).json({ error: 'error' });
     }
   }
-  // return res.status(500).json({ error: 'internal Error Server' });
+  return res.status(500).json({ error: 'internal Error Server' });
 }
