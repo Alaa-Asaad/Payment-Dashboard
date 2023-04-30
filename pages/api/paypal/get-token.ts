@@ -11,16 +11,22 @@ export default async function GetAccessToken() {
   const headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
   };
-
-  const response = await axios({
-    method: 'post',
-    url,
-    data,
-    auth,
-    headers,
-  });
-  const { access_token: accessToken } = await response.data;
-  return {
-    accessToken,
-  };
+  try {
+    const response = await axios({
+      method: 'post',
+      url,
+      data,
+      auth,
+      headers,
+    });
+    const { access_token: accessToken } = await response.data;
+    return {
+      accessToken,
+    };
+  } catch (error) {
+    return {
+      message: 'we are in token',
+      error,
+    };
+  }
 }

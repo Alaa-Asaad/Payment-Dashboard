@@ -47,13 +47,20 @@ export default async function CreateOrder() {
     },
   };
 
-  const response = await axios({
-    method: 'post',
-    url,
-    headers,
-    data,
-  });
-  const res: PayPalOrder = await response.data;
+  try {
+    const response = await axios({
+      method: 'post',
+      url,
+      headers,
+      data,
+    });
+    const res: PayPalOrder = await response.data;
 
-  return res;
+    return res;
+  } catch (error) {
+    return {
+      message: 'we are in order',
+      error,
+    };
+  }
 }

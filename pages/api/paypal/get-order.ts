@@ -11,9 +11,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<OrderResponseType | Error | unknown>,
 ) {
-  // console.log(order);
   if (req.method === 'GET') {
-    console.log('inside GET get-order');
     try {
       const order = await CreateOrder();
       return res.status(200).json(order);
