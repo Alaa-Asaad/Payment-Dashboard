@@ -4,6 +4,8 @@ import { StripeCardElement } from '@stripe/stripe-js';
 import Image from 'next/image';
 import React, { useState } from 'react';
 
+import Confirmation from '@/pages/confirmation';
+
 import StepperComponent from '../components/stepper';
 import getPaymentIntent from '../fetcher/stripe/getPaymentFetcher';
 
@@ -13,12 +15,15 @@ function Stripe() {
   const [loading, setLoading] = useState(false);
   const [active, setActive] = useState(1);
 
+  const [warning, setWarning] = useState<string>();
+  const [completeOrder, setCompleteOrder] = useState(false);
+  const [error, setError] = useState<string>();
+
   const confirmPayment = async (clientSecret: string) => {
     if (!stripe || !elements) {
-      setLoading(true);
-      setLoading(false);
+      setWarning('Stripe is Loading please wait ');
     } else {
-      // here you call confirmPayment api endpoint
+      // here you call confirmPayment api endpoint or sdk
       setLoading(true);
       const result = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
@@ -27,7 +32,12 @@ function Stripe() {
       });
       setLoading(false);
       setActive(3);
-      console.log(result);
+      if (result.paymentIntent) {
+        setCompleteOrder(true);
+      }
+      if (result.error) {
+        setError(result.error.message);
+      }
     }
   };
 
@@ -43,6 +53,16 @@ function Stripe() {
       setLoading(false);
     }
   };
+  if (completeOrder) return <Confirmation />;
+  if (error) {
+    return (
+      <p>
+        Sorry, but there is Error:
+        {error}
+        Please Refresh the page or Try again later
+      </p>
+    );
+  }
 
   return (
     <Stack spacing={50} mt={20}>
@@ -58,9 +78,16 @@ function Stripe() {
       </Container>
       <Text mt={-30}>Price: 10$</Text>
       <CardElement />
-      <Button onClick={() => createPaymentIntent()} loading={loading}>
-        Pay
-      </Button>
+      {warning ? (
+        <p>
+          ...
+          {warning}
+        </p>
+      ) : (
+        <Button onClick={() => createPaymentIntent()} loading={loading}>
+          Pay
+        </Button>
+      )}
     </Stack>
   );
 }
