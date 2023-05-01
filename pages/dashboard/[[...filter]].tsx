@@ -43,7 +43,7 @@ export default function DashBoard({ paramString }: Props) {
   return (
     <>
       <Head>
-        <title>Create DashBoard</title>
+        <title>Payment DashBoard</title>
         <meta name="description" content="DashBoard" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {/* <link rel="icon" href="/favicon.ico" /> */}

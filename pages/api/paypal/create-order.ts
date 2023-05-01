@@ -11,8 +11,7 @@ export default async function CreateOrder() {
   // console.log(`Bearer ${accessToken}`);
 
   const headers = {
-    Authorization:
-      'Bearer A21AAIG5-oxifG0fz4RWOr3VIRTvVVzlkjxl3DFD64wfySpKtOpQg073T8Z8-jbmgaRKlBtwtUfAQ8uoWu68bKVoS3fdS36Nw',
+    Authorization: `Bearer ${accessToken}`,
     'Content-Type': 'application/json',
   };
   const data = {
@@ -60,8 +59,7 @@ export default async function CreateOrder() {
     return res;
   } catch (error) {
     return {
-      message: 'we are in order',
-      tkk: accessToken,
+      message: 'Order Create Error',
       error,
     };
   }

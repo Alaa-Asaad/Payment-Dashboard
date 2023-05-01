@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Create DashBoard</title>
+        <title>Payment DashBoard</title>
         <meta name="description" content="DashBoard" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
